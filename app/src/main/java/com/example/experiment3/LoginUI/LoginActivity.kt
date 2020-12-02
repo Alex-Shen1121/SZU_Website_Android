@@ -1,15 +1,17 @@
 package com.example.experiment3.LoginUI
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.experiment3.Admin.AdminMenu
 import com.example.experiment3.R
 import kotlinx.android.synthetic.main.activity_login.*
 import java.io.*
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     val accountList = mutableMapOf<String, String>()
 
@@ -30,12 +32,21 @@ class LoginActivity : AppCompatActivity() {
             //账号密码匹配成功
             if(accountList[account]==password){
                 Toast.makeText(this,"登陆成功",Toast.LENGTH_SHORT).show()
-
+                //进入管理员界面
+                //有且仅有一个管理员账号
+                if(account=="admin"){
+                    val intent=Intent(this,AdminMenu::class.java)
+                    intent.putExtra("userName",account)
+                    intent.putExtra("userIdentity","管理员")
+                    startActivity(intent)
+                    finish()
+                }
+                //其他全部进入学生界面
             }
             else{
                 AlertDialog.Builder(this).apply {
                     setTitle("登陆失败")
-                    setMessage("请重新检查用户名与密码。\n 或者联系管理员。")
+                    setMessage("请重新检查用户名与密码。\n或者联系管理员。")
                     setCancelable(false)
                     setPositiveButton("OK"){_, _ ->}
                     show()
