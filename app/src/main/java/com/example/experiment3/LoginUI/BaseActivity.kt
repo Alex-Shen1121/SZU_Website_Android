@@ -4,9 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.wifi.WifiManager
 import android.os.Bundle
-import android.os.ResultReceiver
 import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity : AppCompatActivity() {
@@ -21,21 +19,36 @@ open class BaseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val intentFilter = IntentFilter()
-        intentFilter.addAction(WifiManager.WIFI_STATE_ENABLED.toString())
+        intentFilter.addAction("com.example.experiment3.FORCE_OFFLINE")
         receiver = ForceOfflineReceiver()
         registerReceiver(receiver, intentFilter)
     }
 
-    inner class ForceOfflineReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent?) {
-            ActivityCollector.finishAll()
-            val i = Intent(context, LoginActivity::class.java)
-            context.startActivity(i)
-        }
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(receiver)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.removeActivity(this)
+    }
+
+    inner class ForceOfflineReceiver : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            android.app.AlertDialog.Builder(context).apply {
+                setTitle("Warning")
+                setMessage("强制下线。请重新登录。")
+                setCancelable(false)
+                setPositiveButton("OK") { _, _ ->
+                    ActivityCollector.finishAll()
+                    val i = Intent(context, LoginActivity::class.java)
+                    context.startActivity(i)
+                }
+                show()
+            }
+        }
+
     }
 }
