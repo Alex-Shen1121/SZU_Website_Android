@@ -23,40 +23,40 @@ class LoginActivity : BaseActivity() {
         //学生账号：admin 密码：123456
         addDefaultAccount()
 
-        login.setOnClickListener(){
+        login.setOnClickListener() {
             //设置正确账号密码Map
             setAccountList()
-            val account=accountEdit.text.toString()
-            val password=passwordEdit.text.toString()
+            val account = accountEdit.text.toString()
+            val password = passwordEdit.text.toString()
             //账号密码匹配成功
-            if(accountList[account]==password){
-                Toast.makeText(this,"登陆成功",Toast.LENGTH_SHORT).show()
+            if (accountList[account] == password) {
+                Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show()
                 //进入管理员界面
                 //有且仅有一个管理员账号
-                if(account=="admin"){
-                    val intent=Intent(this,AdminMenu::class.java)
-                    intent.putExtra("userName",account)
-                    intent.putExtra("userIdentity","管理员")
+                if (account == "admin") {
+                    val intent = Intent(this, AdminMenu::class.java)
+                    intent.putExtra("userName", account)
+                    intent.putExtra("userIdentity", "管理员")
                     startActivity(intent)
                     finish()
                 }
                 //其他全部进入学生界面
-            }
-            else{
+            } else {
                 AlertDialog.Builder(this).apply {
                     setTitle("登陆失败")
                     setMessage("请重新检查用户名与密码。\n或者联系管理员。")
                     setCancelable(false)
-                    setPositiveButton("OK"){_, _ ->}
+                    setPositiveButton("OK") { _, _ -> }
                     show()
                 }
+                passwordEdit.text = null
             }
         }
 
 
     }
 
-    private fun setAccountList(){
+    private fun setAccountList() {
         val input = openFileInput("account_password.txt")
         val reader = BufferedReader(InputStreamReader(input))
         var line = 0
@@ -76,9 +76,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun addDefaultAccount(){
-        val output=openFileOutput("account_password.txt", MODE_APPEND)
-        val writer=BufferedWriter(OutputStreamWriter(output))
+    private fun addDefaultAccount() {
+        val output = openFileOutput("account_password.txt", MODE_APPEND)
+        val writer = BufferedWriter(OutputStreamWriter(output))
         writer.use {
             it.write("admin")
             it.newLine()
