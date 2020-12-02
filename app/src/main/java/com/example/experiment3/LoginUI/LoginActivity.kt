@@ -1,12 +1,11 @@
 package com.example.experiment3.LoginUI
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.experiment3.Admin.AdminMenu
+import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
 import kotlinx.android.synthetic.main.activity_login.*
 import java.io.*

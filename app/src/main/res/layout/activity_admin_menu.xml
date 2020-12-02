@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#E3D1D1"
         android:orientation="vertical">
 
@@ -54,7 +54,47 @@
             android:layout_height="1dp"
             android:background="@color/black" />
 
+
+
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E3D1D1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <Spinner
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:id="@+id/spinner"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:layout_width="200dp"
+                android:text="注：管理员可以选择栏目，并更新对应栏目的通知。"
+                android:gravity="center"
+                android:layout_height="80dp"/>
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:id="@+id/addInform"
+                android:text="添加通知"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+    </RelativeLayout>
 
 </LinearLayout>

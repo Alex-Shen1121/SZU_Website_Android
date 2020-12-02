@@ -1,4 +1,4 @@
-package com.example.experiment3.LoginUI
+package com.example.experiment3
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.experiment3.LoginUI.LoginActivity
 
 open class BaseActivity : AppCompatActivity() {
 
