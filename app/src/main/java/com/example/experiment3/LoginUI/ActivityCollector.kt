@@ -2,7 +2,7 @@ package com.example.experiment3.LoginUI
 
 import android.app.Activity
 
-class ActivityCollector {
+object ActivityCollector {
     private val activities = ArrayList<Activity>()
 
     fun addActivity(activity: Activity) {
