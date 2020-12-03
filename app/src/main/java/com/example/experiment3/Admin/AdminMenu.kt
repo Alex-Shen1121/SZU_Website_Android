@@ -2,7 +2,9 @@ package com.example.experiment3.Admin
 
 import android.content.Intent
 import android.graphics.Color
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
@@ -20,6 +22,7 @@ class AdminMenu : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_menu)
         supportActionBar?.hide()
+        //设置个人信息
         var user_name = "用户名:"
         var user_identity = "身份:"
         user_name += intent.getStringExtra("userName")
@@ -27,6 +30,7 @@ class AdminMenu : BaseActivity() {
         userName.text = user_name
         userIdentity.text = user_identity
 
+        //设置强制下线
         ForceOffline.setOnClickListener() {
             val intent = Intent("com.example.experiment3.FORCE_OFFLINE")
             intent.setPackage(packageName)
@@ -51,6 +55,14 @@ class AdminMenu : BaseActivity() {
                 // TODO
 
             }
+        }
+
+        addInform.setOnClickListener() {
+            val intent = Intent(this, AdminAddInform::class.java)
+            intent.putExtra("column", spinner.selectedItem.toString())
+            intent.putExtra("userName", user_name)
+            intent.putExtra("userIdentity", user_identity)
+            startActivity(intent)
         }
 
     }
