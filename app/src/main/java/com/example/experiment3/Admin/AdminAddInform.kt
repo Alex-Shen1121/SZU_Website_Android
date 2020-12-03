@@ -9,12 +9,15 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
 import kotlinx.android.synthetic.main.activity_admin_add_inform.*
 import kotlinx.android.synthetic.main.activity_admin_menu.*
 import kotlinx.android.synthetic.main.activity_admin_menu.userIdentity
 import kotlinx.android.synthetic.main.activity_admin_menu.userName
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
 
 class AdminAddInform : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,12 +48,17 @@ class AdminAddInform : BaseActivity() {
                 informType.visibility = View.VISIBLE
                 informTitle.visibility = View.VISIBLE
                 //设置通知类别下拉框
-                val mItems = arrayOf("讲座", "教务", "科研","行政","学工","生活")
+                val mItems = arrayOf("讲座", "教务", "科研", "行政", "学工", "生活")
                 val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mItems)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 informType.adapter = adapter
                 informType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(parent: AdapterView<*>?, view: View, pos: Int, id: Long) {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View,
+                        pos: Int,
+                        id: Long
+                    ) {
                         // TODO
                         val tv = view as TextView
                         tv.setTextColor(Color.BLUE)
@@ -60,7 +68,6 @@ class AdminAddInform : BaseActivity() {
 
                     override fun onNothingSelected(parent: AdapterView<*>) {
                         // TODO
-
                     }
                 }
 
@@ -74,6 +81,73 @@ class AdminAddInform : BaseActivity() {
             }
             "深大新闻" -> {
                 informTitle.visibility = View.VISIBLE
+            }
+        }
+
+        //设置提交事件
+        //修改文档
+        submitInform.setOnClickListener() {
+            when (intent.getStringExtra("column")) {
+                "重要通知" -> {
+                    val output = openFileOutput("important_information.txt", MODE_APPEND)
+                    val writer = BufferedWriter(OutputStreamWriter(output))
+                    val type = informType.selectedItem.toString()
+                    val content = informTitle.text.toString()
+                    //如果未填写，做出反馈
+                    if (content == "") {
+                        Toast.makeText(this, "请正确输入内容", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    writer.use {
+                        it.write(type)
+                        it.newLine()
+                        it.write(content)
+                        it.newLine()
+                    }
+                    val intent=Intent(this,AdminMenu::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "学术讲座" -> {
+                    val output = openFileOutput("academic_lecture.txt", MODE_APPEND)
+                    val writer = BufferedWriter(OutputStreamWriter(output))
+                    val date = dateTime.text.toString()
+                    val title = informTitle.text.toString()
+                    val place = place.text.toString()
+                    //如果未填写，做出反馈
+                    if (date == "" || title == "" || place == "") {
+                        Toast.makeText(this, "请正确输入内容", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    writer.use {
+                        it.write(date)
+                        it.newLine()
+                        it.write(title)
+                        it.newLine()
+                        it.write(place)
+                        it.newLine()
+                    }
+                    val intent=Intent(this,AdminMenu::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "深大新闻" -> {
+                    val output = openFileOutput("szu_news.txt", MODE_APPEND)
+                    val writer = BufferedWriter(OutputStreamWriter(output))
+                    val title = informTitle.text.toString()
+                    //如果未填写，做出反馈
+                    if (title == "") {
+                        Toast.makeText(this, "请正确输入内容", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    writer.use {
+                        it.write(title)
+                        it.newLine()
+                    }
+                    val intent=Intent(this,AdminMenu::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
 
