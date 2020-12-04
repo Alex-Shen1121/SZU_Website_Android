@@ -22,6 +22,7 @@ class LoginActivity : BaseActivity() {
         //管理员账号：admin 密码：123456
         //学生账号：admin 密码：123456
         addDefaultAccount()
+        addDefaultNews()
 
         login.setOnClickListener() {
             //设置正确账号密码Map
@@ -77,17 +78,79 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun addDefaultAccount() {
-        val output = openFileOutput("account_password.txt", MODE_APPEND)
-        val writer = BufferedWriter(OutputStreamWriter(output))
-        writer.use {
-            it.write("admin")
-            it.newLine()
-            it.write("123456")
-            it.newLine()
-            it.write("student")
-            it.newLine()
-            it.write("123456")
-            it.newLine()
+        val file=File("/data/data/com.example.experiment3/files/account_password.txt")
+        if (!file.exists()){
+            val output = openFileOutput("account_password.txt", MODE_APPEND)
+            val writer = BufferedWriter(OutputStreamWriter(output))
+            writer.use {
+                it.write("admin")
+                it.newLine()
+                it.write("123456")
+                it.newLine()
+                it.write("student")
+                it.newLine()
+                it.write("123456")
+                it.newLine()
+            }
+        }
+    }
+
+    private fun addDefaultNews() {
+        //初始化《重要通知》
+        var file=File("/data/data/com.example.experiment3/files/important_information.txt")
+        if(!file.exists()){
+            val output = openFileOutput("important_information.txt", MODE_APPEND)
+            val writer = BufferedWriter(OutputStreamWriter(output))
+            writer.use {
+                it.write("行政\n")
+                it.write("2020年预聘-长聘制教师岗位晋升各学科评议组推荐人选申报材料公示\n")
+                it.write("教务\n")
+                it.write("关于本科生火车票优惠卡补办的通知\n")
+                it.write("行政\n")
+                it.write("关于参加深圳大学博物馆（筹）聘任仪式暨馆藏艺术作品展活动开幕式的通知\n")
+                it.write("教务\n")
+                it.write("关于2020级本科新生登陆“学信网”查询学籍注册信息的通知\n")
+                it.write("行政\n")
+                it.write("2020年度职称评聘各学科评议组推荐人选申报材料公示\n")
+                it.write("学工\n")
+                it.write("关于学分学费第二次银行批扣时间安排的通知\n")
+            }
+        }
+        //初始化《学术讲座》
+        file=File("/data/data/com.example.experiment3/files/academic_lecture.txt")
+        if(!file.exists()) {
+            val output = openFileOutput("academic_lecture.txt", MODE_APPEND)
+            val writer = BufferedWriter(OutputStreamWriter(output))
+            writer.use {
+                it.write("2020/12/4\n")
+                it.write("2020年高水平学术报告二十四：【大师讲座】中国工程院杨永斌院士学术报告\n")
+                it.write("致工楼\n")
+                it.write("2020/12/4\n")
+                it.write("深圳大学城乡规划系列—名师讲堂|国土空间规划再思考\n")
+                it.write("建规学院\n")
+                it.write("2020/12/4\n")
+                it.write("高等研究院数学报告--Contour integral solutions of linear......\n")
+                it.write("其他\n")
+                it.write("2020/12/6\n")
+                it.write("深大讲学计划第3讲 港澳论坛第27讲\n")
+                it.write("其他\n")
+            }
+        }
+        file=File("/data/data/com.example.experiment3/files/szu_news.txt")
+        if(!file.exists()){
+            val output = openFileOutput("szu_news.txt", MODE_APPEND)
+            val writer = BufferedWriter(OutputStreamWriter(output))
+            writer.use {
+                it.write("校党委理论学习中心组召开理论学习会 学习传达习近平总书记近期重要讲话精神及重要会议精神\n")
+                it.write("校党委书记刘洪一出席深圳青年发展型城市建设学术研讨会暨课题开题会并作主旨发言\n")
+                it.write("深圳大学召开学习贯彻习近平总书记出席深圳经济特区建立40周年庆祝大会和视察广东、深圳重要讲话和重要指示精神宣讲大会\n")
+                it.write("深圳大学中国特色社会主义先行示范区残疾人事业发展研究中心（基地）揭牌成立\n")
+                it.write("深大微众金融科技学院成立一周年 金融科技实验室揭牌 12名学子获首届“微众奖学金”，21位专家获聘“业界导师”\n")
+                it.write("教育部直属机关党员干部“不忘初心、牢记使命”专题实践培训班在我校开班\n")
+                it.write("探索交叉学科建设 激发学生跨界思考能力 深圳大学艺术与科技跨界创新实验室揭牌成立\n")
+                it.write("我校聘任全国政协委员、中国职业技术教育学会会长、教育部原副部长鲁昕为客座教授、首席经济学家\n")
+                it.write("喜讯！我校在第六届中国国际“互联网+”大学生创新创业大赛总决赛中成绩创新高！\n")
+            }
         }
     }
 }

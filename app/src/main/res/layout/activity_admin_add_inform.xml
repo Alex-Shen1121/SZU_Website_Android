@@ -76,6 +76,12 @@
                 android:textSize="20sp"
                 android:id="@+id/columnTitle"/>
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:id="@+id/blank3"
+                android:visibility="invisible"/>
+
             <Spinner
                 android:layout_width="200dp"
                 android:layout_height="30dp"
@@ -90,7 +96,9 @@
                 android:visibility="invisible"
                 android:background="#E3C1C1"
                 android:hint="日期：xxxx/xx/xx"
-                android:inputType="date"/>
+                android:textSize="20sp"
+                android:inputType="date"
+                android:singleLine="true"/>
 
             <View
                 android:layout_width="1dp"
@@ -103,10 +111,10 @@
                 android:layout_height="wrap_content"
                 android:background="#E3C1C1"
                 android:hint="请输入标题："
+                android:textSize="20sp"
                 android:id="@+id/informTitle"
                 android:visibility="invisible"
-                android:lines="3"
-                android:maxLines="3"/>
+                android:singleLine="true"/>
 
             <View
                 android:layout_width="1dp"
@@ -119,9 +127,9 @@
                 android:layout_height="wrap_content"
                 android:background="#E3C1C1"
                 android:hint="请输入地点："
+                android:textSize="20sp"
                 android:id="@+id/place"
-                android:lines="3"
-                android:maxLines="3"
+                android:singleLine="true"
                 android:visibility="invisible"/>
             
             <Button

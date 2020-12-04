@@ -47,8 +47,9 @@ class AdminAddInform : BaseActivity() {
             "重要通知" -> {
                 informType.visibility = View.VISIBLE
                 informTitle.visibility = View.VISIBLE
+                blank3.visibility = View.VISIBLE
                 //设置通知类别下拉框
-                val mItems = arrayOf("讲座", "教务", "科研", "行政", "学工", "生活")
+                val mItems = arrayOf("教务", "科研", "行政", "学工", "生活")
                 val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mItems)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 informType.adapter = adapter
@@ -61,9 +62,9 @@ class AdminAddInform : BaseActivity() {
                     ) {
                         // TODO
                         val tv = view as TextView
-                        tv.setTextColor(Color.BLUE)
+                        tv.setTextColor(Color.BLACK)
                         tv.textSize = 20f
-                        tv.gravity = Gravity.CENTER
+                        tv.gravity = Gravity.LEFT
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>) {
