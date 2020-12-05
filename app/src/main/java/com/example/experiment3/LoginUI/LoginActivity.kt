@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.experiment3.Admin.AdminMenu
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
+import com.example.experiment3.Student.StudentMenu
 import kotlinx.android.synthetic.main.activity_login.*
 import java.io.*
 
@@ -42,6 +43,13 @@ class LoginActivity : BaseActivity() {
                     finish()
                 }
                 //其他全部进入学生界面
+                else{
+                    val intent = Intent(this, StudentMenu::class.java)
+                    intent.putExtra("userName", account)
+                    intent.putExtra("userIdentity", "学生")
+                    startActivity(intent)
+                    finish()
+                }
             } else {
                 AlertDialog.Builder(this).apply {
                     setTitle("登陆失败")
@@ -57,6 +65,7 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    //设置正确账号map表
     private fun setAccountList() {
         val input = openFileInput("account_password.txt")
         val reader = BufferedReader(InputStreamReader(input))
@@ -77,6 +86,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    //初始化默认账号
     private fun addDefaultAccount() {
         val file=File("/data/data/com.example.experiment3/files/account_password.txt")
         if (!file.exists()){
@@ -95,8 +105,8 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    //初始化《重要通知》
     private fun addDefaultNews() {
-        //初始化《重要通知》
         var file=File("/data/data/com.example.experiment3/files/important_information.txt")
         if(!file.exists()){
             val output = openFileOutput("important_information.txt", MODE_APPEND)
@@ -136,6 +146,7 @@ class LoginActivity : BaseActivity() {
                 it.write("其他\n")
             }
         }
+        //初始化《深大新闻》
         file=File("/data/data/com.example.experiment3/files/szu_news.txt")
         if(!file.exists()){
             val output = openFileOutput("szu_news.txt", MODE_APPEND)
