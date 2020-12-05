@@ -13,13 +13,9 @@ class RightMainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_right_main)
         val fragment=RightMainFrag as RightFragment
+        supportActionBar?.hide()
         fragment.refresh()
     }
 
-    companion object{
-        fun actionstart(context:Context,title:String,content:String){
-            val intent=Intent(context,RightMainActivity::class.java)
-            context.startActivity(intent)
-        }
-    }
+
 }
