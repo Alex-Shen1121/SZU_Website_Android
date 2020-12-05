@@ -1,5 +1,6 @@
 package com.example.experiment3.Student
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,12 +30,12 @@ class LeftFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        isTwoPane = activity?.findViewById<View>(R.id.RightMainFrag) != null
+        isTwoPane = activity?.findViewById<View>(R.id.StudentRightLayout) != null
         //设置重要通知
         val layoutManager = LinearLayoutManager(activity)
         importantInformRecyclerView.layoutManager = layoutManager
         val adapter = StudentMenu.ImportantInformAdapter(getInform())
-        importantInformRecyclerView.adapter=adapter
+        importantInformRecyclerView.adapter = adapter
     }
 
     private fun getInform(): ArrayList<important_inform> {
@@ -47,12 +48,10 @@ class LeftFragment : Fragment() {
         reader.use {
             reader.forEachLine {
                 line += 1
-                if (line % 2 == 1){
-                    var str= "[$it]"
+                if (line % 2 == 1) {
+                    var str = "[$it]"
                     type.add(str)
-                }
-
-                else if (line % 2 == 0)
+                } else if (line % 2 == 0)
                     title.add(it)
             }
         }

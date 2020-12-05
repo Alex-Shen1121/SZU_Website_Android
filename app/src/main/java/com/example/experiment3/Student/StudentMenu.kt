@@ -14,10 +14,13 @@ import kotlinx.android.synthetic.main.left_frag.*
 
 class StudentMenu : BaseActivity() {
 
+    var isTwoPane=false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_menu)
         supportActionBar?.hide()
+        isTwoPane = findViewById<View>(R.id.StudentRightLayout) != null
         //设置个人信息
         var user_name = "用户名:"
         var user_identity = "身份:"
@@ -35,8 +38,11 @@ class StudentMenu : BaseActivity() {
 
         //进入内部网
         szu_website_button.setOnClickListener() {
-            val intent = Intent(this, RightMainActivity::class.java)
-            startActivity(intent)
+            if(!isTwoPane){
+                val intent = Intent(this, RightMainActivity::class.java)
+                startActivity(intent)
+            }
+
         }
 
     }
