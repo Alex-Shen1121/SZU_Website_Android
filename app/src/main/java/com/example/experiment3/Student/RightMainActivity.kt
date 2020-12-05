@@ -1,8 +1,5 @@
 package com.example.experiment3.Student
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R

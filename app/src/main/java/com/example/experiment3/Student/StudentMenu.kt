@@ -1,14 +1,15 @@
 package com.example.experiment3.Student
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
-import kotlinx.android.synthetic.main.activity_admin_menu.*
-import kotlinx.android.synthetic.main.activity_admin_menu.ForceOffline
-import kotlinx.android.synthetic.main.activity_admin_menu.userIdentity
-import kotlinx.android.synthetic.main.activity_admin_menu.userName
+import com.example.experiment3.Student.RecyclerView.important_inform
 import kotlinx.android.synthetic.main.left_frag.*
 
 class StudentMenu : BaseActivity() {
@@ -33,10 +34,33 @@ class StudentMenu : BaseActivity() {
         }
 
         //进入内部网
-        szu_website_button.setOnClickListener(){
-            val intent=Intent(this,RightMainActivity::class.java)
+        szu_website_button.setOnClickListener() {
+            val intent = Intent(this, RightMainActivity::class.java)
             startActivity(intent)
         }
 
+    }
+
+    class ImportantInformAdapter(val informList: List<important_inform>) :
+        RecyclerView.Adapter<ImportantInformAdapter.ViewHolder>() {
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val importantInformType: TextView = view.findViewById(R.id.type)
+            val importantInformTitle: TextView = view.findViewById(R.id.title)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.important_inform_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun getItemCount() = informList.size
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            var inform = informList[position]
+            holder.importantInformTitle.text = inform.title
+            holder.importantInformType.text = inform.type
+        }
     }
 }

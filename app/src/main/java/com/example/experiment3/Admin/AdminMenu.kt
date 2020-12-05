@@ -2,16 +2,13 @@ package com.example.experiment3.Admin
 
 import android.content.Intent
 import android.graphics.Color
-import android.nfc.Tag
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
 import kotlinx.android.synthetic.main.activity_admin_menu.*
