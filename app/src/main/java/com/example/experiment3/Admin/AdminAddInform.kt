@@ -104,7 +104,7 @@ class AdminAddInform : BaseActivity() {
                         it.write(content)
                         it.newLine()
                     }
-                    val intent=Intent(this,AdminMenu::class.java)
+                    val intent = Intent(this, AdminMenu::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -127,7 +127,7 @@ class AdminAddInform : BaseActivity() {
                         it.write(place)
                         it.newLine()
                     }
-                    val intent=Intent(this,AdminMenu::class.java)
+                    val intent = Intent(this, AdminMenu::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -144,7 +144,7 @@ class AdminAddInform : BaseActivity() {
                         it.write(title)
                         it.newLine()
                     }
-                    val intent=Intent(this,AdminMenu::class.java)
+                    val intent = Intent(this, AdminMenu::class.java)
                     startActivity(intent)
                     finish()
                 }

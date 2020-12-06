@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
+import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
+import kotlinx.android.synthetic.main.important_inform_item.*
 import kotlinx.android.synthetic.main.left_frag.*
 import java.io.BufferedReader
 import java.io.InputStream
@@ -34,11 +36,18 @@ class LeftFragment : Fragment() {
         //设置重要通知
         val layoutManager = LinearLayoutManager(activity)
         importantInformRecyclerView.layoutManager = layoutManager
-        val adapter = StudentMenu.ImportantInformAdapter(getInform())
-        importantInformRecyclerView.adapter = adapter
+        val adapter1 = StudentMenu.ImportantInformAdapter(getInform1())
+        importantInformRecyclerView.adapter = adapter1
+
+        //设置学术讲座
+        val layoutManager2 = LinearLayoutManager(activity)
+        academicLectureRecyclerView.layoutManager = layoutManager2
+        val adapter2 = StudentMenu.AcademicLectureAdapter(getInform2())
+        academicLectureRecyclerView.adapter = adapter2
     }
 
-    private fun getInform(): ArrayList<important_inform> {
+    //读取重要通知文件
+    private fun getInform1(): ArrayList<important_inform> {
         val informList = ArrayList<important_inform>()
         val input = activity?.openFileInput("important_information.txt")
         val reader = BufferedReader(InputStreamReader(input))
@@ -60,4 +69,57 @@ class LeftFragment : Fragment() {
         }
         return informList
     }
+
+    //读取学术讲座文件
+    private fun getInform2(): ArrayList<academic_lecture> {
+        val informList = ArrayList<academic_lecture>()
+        val input = activity?.openFileInput("academic_lecture.txt")
+        val reader = BufferedReader(InputStreamReader(input))
+        var line = 0
+        val date = ArrayList<String>()
+        val title = ArrayList<String>()
+        val place = ArrayList<String>()
+        reader.use {
+            reader.forEachLine {
+                line += 1
+                if (line % 3 == 1)
+                    date.add(it)
+                else if (line % 3 == 0) {
+                    place.add(it)
+                } else if (line % 3 == 2)
+                    title.add(it)
+            }
+        }
+        for (i in date.indices) {
+            informList.add(academic_lecture(date[i], title[i], place[i]))
+        }
+        return informList
+    }
+
+    //读取深大新闻文件
+    private fun getInform3(): ArrayList<academic_lecture> {
+        val informList = ArrayList<academic_lecture>()
+        val input = activity?.openFileInput("szu_news.txt")
+        val reader = BufferedReader(InputStreamReader(input))
+        var line = 0
+        val date = ArrayList<String>()
+        val title = ArrayList<String>()
+        val place = ArrayList<String>()
+        reader.use {
+            reader.forEachLine {
+                line += 1
+                if (line % 3 == 1)
+                    date.add(it)
+                else if (line % 3 == 0) {
+                    place.add(it)
+                } else if (line % 3 == 2)
+                    title.add(it)
+            }
+        }
+        for (i in date.indices) {
+            informList.add(academic_lecture(date[i], title[i], place[i]))
+        }
+        return informList
+    }
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="#E3D1D1"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
@@ -51,61 +51,61 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:id="@+id/important_inform_button"
-            android:background="#00000000"
-            android:textColor="#95222F"
-            android:textSize="18dp"
-            android:text="重要通知"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:background="#00000000"
+            android:text="重要通知"
+            android:textColor="#95222F"
+            android:textSize="18dp" />
+
+        <Button
             android:id="@+id/academic_lecture_button"
-            android:background="#00000000"
-            android:textColor="#95222F"
-            android:textSize="18dp"
-            android:text="学术讲座"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:background="#00000000"
+            android:text="学术讲座"
+            android:textColor="#95222F"
+            android:textSize="18dp" />
+
+        <Button
             android:id="@+id/szu_news_button"
-            android:background="#00000000"
-            android:textColor="#95222F"
-            android:textSize="18dp"
-            android:text="深大新闻"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:id="@+id/szu_website_button"
             android:background="#00000000"
+            android:text="深大新闻"
             android:textColor="#95222F"
-            android:textSize="18dp"
-            android:text="其他"/>
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/szu_website_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="#00000000"
+            android:text="其他"
+            android:textColor="#95222F"
+            android:textSize="18dp" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/importantInformRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/importantInformRecyclerView"/>
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/academicLectureRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/academicLectureRecyclerView"/>
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/szuNewsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/szuNewsRecyclerView"/>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

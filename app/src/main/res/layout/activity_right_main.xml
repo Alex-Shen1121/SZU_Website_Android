@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/RightMainFrag"
-        android:name="com.example.experiment3.Student.RightFragment"/>
+        android:name="com.example.experiment3.Student.RightFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

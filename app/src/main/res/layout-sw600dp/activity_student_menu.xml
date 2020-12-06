@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <fragment
+        android:id="@+id/StudentLeftFrag"
+        android:name="com.example.experiment3.Student.LeftFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1.65"
-        android:name="com.example.experiment3.Student.LeftFragment"
-        android:id="@+id/StudentLeftFrag"/>
+        android:layout_weight="1.65" />
 
     <FrameLayout
+        android:id="@+id/StudentRightLayout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:id="@+id/StudentRightLayout">
+        android:layout_weight="3">
 
         <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/StudentRightFrag"
-            android:name="com.example.experiment3.Student.RightFragment"/>
+            android:name="com.example.experiment3.Student.RightFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 

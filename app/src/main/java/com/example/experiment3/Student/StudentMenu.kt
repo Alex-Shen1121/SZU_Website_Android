@@ -9,12 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
+import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
 import kotlinx.android.synthetic.main.left_frag.*
 
 class StudentMenu : BaseActivity() {
 
-    var isTwoPane=false
+    var isTwoPane = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class StudentMenu : BaseActivity() {
 
         //进入内部网
         szu_website_button.setOnClickListener() {
-            if(!isTwoPane){
+            if (!isTwoPane) {
                 val intent = Intent(this, RightMainActivity::class.java)
                 startActivity(intent)
             }
@@ -47,6 +48,7 @@ class StudentMenu : BaseActivity() {
 
     }
 
+    //重要通知RecyclerViewAdapter
     class ImportantInformAdapter(val informList: List<important_inform>) :
         RecyclerView.Adapter<ImportantInformAdapter.ViewHolder>() {
 
@@ -67,6 +69,32 @@ class StudentMenu : BaseActivity() {
             var inform = informList[position]
             holder.importantInformTitle.text = inform.title
             holder.importantInformType.text = inform.type
+        }
+    }
+
+    //学术讲座RecyclerViewAdapter
+    class AcademicLectureAdapter(val informList: List<academic_lecture>) :
+        RecyclerView.Adapter<AcademicLectureAdapter.ViewHolder>() {
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val AcademicLectureDate: TextView = view.findViewById(R.id.lecturedate)
+            val AcademicLectureTitle: TextView = view.findViewById(R.id.lecturetitle)
+            val AcademicLecturePlace: TextView = view.findViewById(R.id.lectureplace)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.academic_lecture_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun getItemCount() = informList.size
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            var inform = informList[position]
+            holder.AcademicLectureTitle.text = inform.title
+            holder.AcademicLectureDate.text = inform.date
+            holder.AcademicLecturePlace.text = inform.place
         }
     }
 }

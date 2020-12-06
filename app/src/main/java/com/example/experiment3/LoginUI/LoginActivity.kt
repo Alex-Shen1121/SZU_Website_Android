@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity() {
                     finish()
                 }
                 //其他全部进入学生界面
-                else{
+                else {
                     val intent = Intent(this, StudentMenu::class.java)
                     intent.putExtra("userName", account)
                     intent.putExtra("userIdentity", "学生")
@@ -88,8 +88,8 @@ class LoginActivity : BaseActivity() {
 
     //初始化默认账号
     private fun addDefaultAccount() {
-        val file=File("/data/data/com.example.experiment3/files/account_password.txt")
-        if (!file.exists()){
+        val file = File("/data/data/com.example.experiment3/files/account_password.txt")
+        if (!file.exists()) {
             val output = openFileOutput("account_password.txt", MODE_APPEND)
             val writer = BufferedWriter(OutputStreamWriter(output))
             writer.use {
@@ -105,10 +105,11 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    //初始化《重要通知》
+
     private fun addDefaultNews() {
-        var file=File("/data/data/com.example.experiment3/files/important_information.txt")
-        if(!file.exists()){
+        //初始化《重要通知》
+        var file = File("/data/data/com.example.experiment3/files/important_information.txt")
+        if (!file.exists()) {
             val output = openFileOutput("important_information.txt", MODE_APPEND)
             val writer = BufferedWriter(OutputStreamWriter(output))
             writer.use {
@@ -124,11 +125,13 @@ class LoginActivity : BaseActivity() {
                 it.write("2020年度职称评聘各学科评议组推荐人选申报材料公示\n")
                 it.write("学工\n")
                 it.write("关于学分学费第二次银行批扣时间安排的通知\n")
+                it.write("行政\n")
+                it.write("2020年度博士后职称评审学科评议组推荐人选申报材料公示\n")
             }
         }
         //初始化《学术讲座》
-        file=File("/data/data/com.example.experiment3/files/academic_lecture.txt")
-        if(!file.exists()) {
+        file = File("/data/data/com.example.experiment3/files/academic_lecture.txt")
+        if (!file.exists()) {
             val output = openFileOutput("academic_lecture.txt", MODE_APPEND)
             val writer = BufferedWriter(OutputStreamWriter(output))
             writer.use {
@@ -147,8 +150,8 @@ class LoginActivity : BaseActivity() {
             }
         }
         //初始化《深大新闻》
-        file=File("/data/data/com.example.experiment3/files/szu_news.txt")
-        if(!file.exists()){
+        file = File("/data/data/com.example.experiment3/files/szu_news.txt")
+        if (!file.exists()) {
             val output = openFileOutput("szu_news.txt", MODE_APPEND)
             val writer = BufferedWriter(OutputStreamWriter(output))
             writer.use {

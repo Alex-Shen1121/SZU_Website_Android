@@ -7,9 +7,9 @@
     tools:context=".Student.StudentMenu">
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/StudentLeftFrag"
-        android:name="com.example.experiment3.Student.LeftFragment"/>
+        android:name="com.example.experiment3.Student.LeftFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
