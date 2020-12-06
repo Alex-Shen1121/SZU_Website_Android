@@ -99,6 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#eee0e5"
+                        android:id="@+id/right1"
                         android:gravity="center"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
@@ -158,6 +159,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
+                        android:id="@+id/right2"
                         android:textSize="12sp"
                         android:text="·UOOC课程\n\n·学生邮箱@\n\n·本科生选课\n\n·研究生选课\n\n·事务中心\n\n·学生工作\n\n·公寓管理\n\n·宿舍申请\n\n·缴学杂费\n\n·考研考博\n\n·就业指导\n\n·学生会\n\n·研究生会"
                         android:textColor="#000" />
@@ -214,6 +216,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
+                        android:id="@+id/right3"
                         android:textSize="12sp"
                         android:text="·荔园晨风\n\n·深大义工\n\n·学科竞赛\n\n·学生创业\n\n·素质教育\n\n·工会活动\n\n·深大校报\n\n·网上电视\n\n·广播电台\n\n·视频校园\n\n·体育场馆\n\n·国际交流\n\n·总医院"
                         android:textColor="#000" />
@@ -271,6 +274,7 @@
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
                         android:textSize="12sp"
+                        android:id="@+id/right4"
                         android:text="·图书馆\n\n·校园网络\n\n·自助服务\n\n·校务信箱\n\n·短信平台\n\n·会议室申请\n\n·校园卡\n\n·故障报修\n\n·失物招领\n\n·后勤服务\n\n·基金会\n\n·深大纪念品\n\n·中行网银"
                         android:textColor="#000" />
 

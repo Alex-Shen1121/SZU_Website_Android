@@ -15,6 +15,8 @@ import com.example.experiment3.Student.RecyclerView.important_inform
 import com.example.experiment3.Student.RecyclerView.szu_news
 import kotlinx.android.synthetic.main.activity_student_menu.*
 import kotlinx.android.synthetic.main.left_frag.*
+import kotlinx.android.synthetic.main.right_frag.*
+import org.w3c.dom.Text
 
 class StudentMenu : BaseActivity() {
 
@@ -93,8 +95,11 @@ class StudentMenu : BaseActivity() {
             }
             //平板版
             else {
-                val fragment = StudentRightLayout as RightFragment
-                fragment.refresh()
+                contentLayout.visibility=View.VISIBLE
+                right1.textSize = 15F
+                right2.textSize = 15F
+                right3.textSize = 15F
+                right4.textSize = 15F
             }
 
         }
