@@ -11,6 +11,7 @@ import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
 import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
+import com.example.experiment3.Student.RecyclerView.szu_news
 import kotlinx.android.synthetic.main.left_frag.*
 
 class StudentMenu : BaseActivity() {
@@ -95,6 +96,28 @@ class StudentMenu : BaseActivity() {
             holder.AcademicLectureTitle.text = inform.title
             holder.AcademicLectureDate.text = inform.date
             holder.AcademicLecturePlace.text = inform.place
+        }
+    }
+
+    //深大新闻RecyclerViewAdapter
+    class SzuNewsAdapter(val informList: List<szu_news>) :
+        RecyclerView.Adapter<SzuNewsAdapter.ViewHolder>() {
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val SzuNewsTitle: TextView = view.findViewById(R.id.newstitle)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.szu_news_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun getItemCount() = informList.size
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            var inform = informList[position]
+            holder.SzuNewsTitle.text = inform.title
         }
     }
 }

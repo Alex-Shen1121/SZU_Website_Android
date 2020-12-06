@@ -1,21 +1,17 @@
 package com.example.experiment3.Student
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.experiment3.BaseActivity
 import com.example.experiment3.R
 import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
-import kotlinx.android.synthetic.main.important_inform_item.*
+import com.example.experiment3.Student.RecyclerView.szu_news
 import kotlinx.android.synthetic.main.left_frag.*
 import java.io.BufferedReader
-import java.io.InputStream
 import java.io.InputStreamReader
 
 class LeftFragment : Fragment() {
@@ -44,6 +40,12 @@ class LeftFragment : Fragment() {
         academicLectureRecyclerView.layoutManager = layoutManager2
         val adapter2 = StudentMenu.AcademicLectureAdapter(getInform2())
         academicLectureRecyclerView.adapter = adapter2
+
+        //设置学术讲座
+        val layoutManager3 = LinearLayoutManager(activity)
+        szuNewsRecyclerView.layoutManager = layoutManager3
+        val adapter3 = StudentMenu.SzuNewsAdapter(getInform3())
+        szuNewsRecyclerView.adapter = adapter3
     }
 
     //读取重要通知文件
@@ -97,27 +99,19 @@ class LeftFragment : Fragment() {
     }
 
     //读取深大新闻文件
-    private fun getInform3(): ArrayList<academic_lecture> {
-        val informList = ArrayList<academic_lecture>()
+    private fun getInform3(): ArrayList<szu_news> {
+        val informList = ArrayList<szu_news>()
         val input = activity?.openFileInput("szu_news.txt")
         val reader = BufferedReader(InputStreamReader(input))
         var line = 0
-        val date = ArrayList<String>()
         val title = ArrayList<String>()
-        val place = ArrayList<String>()
         reader.use {
             reader.forEachLine {
-                line += 1
-                if (line % 3 == 1)
-                    date.add(it)
-                else if (line % 3 == 0) {
-                    place.add(it)
-                } else if (line % 3 == 2)
-                    title.add(it)
+                title.add(it)
             }
         }
-        for (i in date.indices) {
-            informList.add(academic_lecture(date[i], title[i], place[i]))
+        for (i in title.indices) {
+            informList.add(szu_news(title[i]))
         }
         return informList
     }
