@@ -1,5 +1,6 @@
 package com.example.experiment3.LoginUI
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -19,6 +20,17 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
+        //记住密码功能
+        val prefs=getPreferences(Context.MODE_PRIVATE)
+        val isRemember=prefs.getBoolean("remember_password",false)
+        if(isRemember){
+            val account=prefs.getString("account","")
+            val password=prefs.getString("password","")
+            accountEdit.setText(account)
+            passwordEdit.setText(password)
+            rememberPass.isChecked=true
+        }
+
         //加入默认账号密码
         //管理员账号：admin 密码：123456
         //学生账号：admin 密码：123456
@@ -33,9 +45,19 @@ class LoginActivity : BaseActivity() {
             //账号密码匹配成功
             if (accountList[account] == password) {
                 Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show()
+                val editor=prefs.edit()
+                if(rememberPass.isChecked){
+                    editor.putBoolean("remember_password",true)
+                    editor.putString("account",account)
+                    editor.putString("password",password)
+                }else{
+                    editor.clear()
+                }
+                editor.apply()
                 //进入管理员界面
                 //有且仅有一个管理员账号
                 if (account == "admin") {
+                    editor.putString("identity","管理员")
                     val intent = Intent(this, AdminMenu::class.java)
                     intent.putExtra("userName", account)
                     intent.putExtra("userIdentity", "管理员")
@@ -44,6 +66,7 @@ class LoginActivity : BaseActivity() {
                 }
                 //其他全部进入学生界面
                 else {
+                    editor.putString("identity","学生")
                     val intent = Intent(this, StudentMenu::class.java)
                     intent.putExtra("userName", account)
                     intent.putExtra("userIdentity", "学生")
