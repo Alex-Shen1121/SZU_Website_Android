@@ -53,11 +53,11 @@ class LoginActivity : BaseActivity() {
                 }else{
                     editor.clear()
                 }
-                editor.apply()
                 //进入管理员界面
                 //有且仅有一个管理员账号
                 if (account == "admin") {
                     editor.putString("identity","管理员")
+                    editor.apply()
                     val intent = Intent(this, AdminMenu::class.java)
                     intent.putExtra("userName", account)
                     intent.putExtra("userIdentity", "管理员")
@@ -67,6 +67,7 @@ class LoginActivity : BaseActivity() {
                 //其他全部进入学生界面
                 else {
                     editor.putString("identity","学生")
+                    editor.apply()
                     val intent = Intent(this, StudentMenu::class.java)
                     intent.putExtra("userName", account)
                     intent.putExtra("userIdentity", "学生")

@@ -22,8 +22,11 @@ class AdminMenu : BaseActivity() {
         //设置个人信息
         var user_name = "用户名:"
         var user_identity = "身份:"
-        user_name += intent.getStringExtra("userName")
-        user_identity += intent.getStringExtra("userIdentity")
+        /*user_name += intent.getStringExtra("userName")
+        user_identity += intent.getStringExtra("userIdentity")*/
+        val prefs=getSharedPreferences("LoginUI.LoginActivity", MODE_PRIVATE)
+        user_name+=prefs.getString("account","null")
+        user_identity+=prefs.getString("identity","null")
         userName.text = user_name
         userIdentity.text = user_identity
 

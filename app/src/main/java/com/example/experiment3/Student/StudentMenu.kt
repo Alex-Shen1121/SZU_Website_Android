@@ -13,8 +13,12 @@ import com.example.experiment3.R
 import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
 import com.example.experiment3.Student.RecyclerView.szu_news
+import kotlinx.android.synthetic.main.activity_admin_menu.*
 import kotlinx.android.synthetic.main.activity_student_menu.*
 import kotlinx.android.synthetic.main.left_frag.*
+import kotlinx.android.synthetic.main.left_frag.ForceOffline
+import kotlinx.android.synthetic.main.left_frag.userIdentity
+import kotlinx.android.synthetic.main.left_frag.userName
 import kotlinx.android.synthetic.main.right_frag.*
 import org.w3c.dom.Text
 
@@ -30,8 +34,11 @@ class StudentMenu : BaseActivity() {
         //设置个人信息
         var user_name = "用户名:"
         var user_identity = "身份:"
-        user_name += intent.getStringExtra("userName")
-        user_identity += intent.getStringExtra("userIdentity")
+        /*user_name += intent.getStringExtra("userName")
+        user_identity += intent.getStringExtra("userIdentity")*/
+        val prefs=getSharedPreferences("LoginUI.LoginActivity", MODE_PRIVATE)
+        user_name+=prefs.getString("account","null")
+        user_identity+=prefs.getString("identity","null")
         userName.text = user_name
         userIdentity.text = user_identity
 
