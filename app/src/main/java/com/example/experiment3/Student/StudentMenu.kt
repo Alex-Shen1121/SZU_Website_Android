@@ -13,6 +13,7 @@ import com.example.experiment3.R
 import com.example.experiment3.Student.RecyclerView.academic_lecture
 import com.example.experiment3.Student.RecyclerView.important_inform
 import com.example.experiment3.Student.RecyclerView.szu_news
+import kotlinx.android.synthetic.main.activity_student_menu.*
 import kotlinx.android.synthetic.main.left_frag.*
 
 class StudentMenu : BaseActivity() {
@@ -85,9 +86,15 @@ class StudentMenu : BaseActivity() {
 
         //进入内部网
         szu_website_button.setOnClickListener() {
+            //手机版
             if (!isTwoPane) {
                 val intent = Intent(this, RightMainActivity::class.java)
                 startActivity(intent)
+            }
+            //平板版
+            else {
+                val fragment = StudentRightLayout as RightFragment
+                fragment.refresh()
             }
 
         }
