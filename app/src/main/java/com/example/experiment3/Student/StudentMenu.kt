@@ -1,6 +1,7 @@
 package com.example.experiment3.Student
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,11 +32,55 @@ class StudentMenu : BaseActivity() {
         userName.text = user_name
         userIdentity.text = user_identity
 
+        //
+        important_inform_button.setBackgroundColor(Color.BLUE)
+        important_inform_button.setTextColor(Color.WHITE)
+
         //设置强制下线
         ForceOffline.setOnClickListener() {
             val intent = Intent("com.example.experiment3.FORCE_OFFLINE")
             intent.setPackage(packageName)
             sendBroadcast(intent)
+        }
+
+        //切换重要通知
+        important_inform_button.setOnClickListener() {
+            important_inform_button.setBackgroundColor(Color.BLUE)
+            important_inform_button.setTextColor(Color.WHITE)
+            academic_lecture_button.setBackgroundColor(Color.TRANSPARENT)
+            academic_lecture_button.setTextColor(Color.RED)
+            szu_news_button.setBackgroundColor(Color.TRANSPARENT)
+            szu_news_button.setTextColor(Color.RED)
+            importantInformRecyclerView.visibility = View.VISIBLE
+            academicLectureRecyclerView.visibility = View.GONE
+            szuNewsRecyclerView.visibility = View.GONE
+        }
+
+
+        //切换学术讲座
+        academic_lecture_button.setOnClickListener() {
+            important_inform_button.setBackgroundColor(Color.TRANSPARENT)
+            important_inform_button.setTextColor(Color.RED)
+            academic_lecture_button.setBackgroundColor(Color.BLUE)
+            academic_lecture_button.setTextColor(Color.WHITE)
+            szu_news_button.setBackgroundColor(Color.TRANSPARENT)
+            szu_news_button.setTextColor(Color.RED)
+            importantInformRecyclerView.visibility = View.GONE
+            academicLectureRecyclerView.visibility = View.VISIBLE
+            szuNewsRecyclerView.visibility = View.GONE
+        }
+
+        //切换深大新闻
+        szu_news_button.setOnClickListener() {
+            important_inform_button.setBackgroundColor(Color.TRANSPARENT)
+            important_inform_button.setTextColor(Color.RED)
+            academic_lecture_button.setBackgroundColor(Color.TRANSPARENT)
+            academic_lecture_button.setTextColor(Color.RED)
+            szu_news_button.setBackgroundColor(Color.BLUE)
+            szu_news_button.setTextColor(Color.WHITE)
+            importantInformRecyclerView.visibility = View.GONE
+            academicLectureRecyclerView.visibility = View.GONE
+            szuNewsRecyclerView.visibility = View.VISIBLE
         }
 
         //进入内部网
@@ -50,7 +95,7 @@ class StudentMenu : BaseActivity() {
     }
 
     //重要通知RecyclerViewAdapter
-    class ImportantInformAdapter(val informList: List<important_inform>) :
+    class ImportantInformAdapter(private val informList: List<important_inform>) :
         RecyclerView.Adapter<ImportantInformAdapter.ViewHolder>() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -74,7 +119,7 @@ class StudentMenu : BaseActivity() {
     }
 
     //学术讲座RecyclerViewAdapter
-    class AcademicLectureAdapter(val informList: List<academic_lecture>) :
+    class AcademicLectureAdapter(private val informList: List<academic_lecture>) :
         RecyclerView.Adapter<AcademicLectureAdapter.ViewHolder>() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -100,7 +145,7 @@ class StudentMenu : BaseActivity() {
     }
 
     //深大新闻RecyclerViewAdapter
-    class SzuNewsAdapter(val informList: List<szu_news>) :
+    class SzuNewsAdapter(private val informList: List<szu_news>) :
         RecyclerView.Adapter<SzuNewsAdapter.ViewHolder>() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -103,7 +103,6 @@ class LeftFragment : Fragment() {
         val informList = ArrayList<szu_news>()
         val input = activity?.openFileInput("szu_news.txt")
         val reader = BufferedReader(InputStreamReader(input))
-        var line = 0
         val title = ArrayList<String>()
         reader.use {
             reader.forEachLine {
