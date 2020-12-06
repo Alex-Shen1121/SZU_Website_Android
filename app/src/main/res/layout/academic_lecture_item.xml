@@ -10,8 +10,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1.5"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,8 +46,9 @@
 
         <TextView
             android:id="@+id/lecturetitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="5"
             android:textSize="15dp" />
 
     </LinearLayout>
