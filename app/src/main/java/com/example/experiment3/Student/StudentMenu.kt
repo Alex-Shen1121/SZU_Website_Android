@@ -2,6 +2,7 @@ package com.example.experiment3.Student
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -58,6 +59,8 @@ class StudentMenu : BaseActivity() {
             intent.setPackage(packageName)
             sendBroadcast(intent)
         }
+
+
 
         //切换重要通知
         important_inform_button.setOnClickListener() {
