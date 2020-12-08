@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.left_frag.ForceOffline
 import kotlinx.android.synthetic.main.left_frag.userIdentity
 import kotlinx.android.synthetic.main.left_frag.userName
 import kotlinx.android.synthetic.main.right_frag.*
-import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StudentMenu : BaseActivity() {
 
@@ -37,14 +38,19 @@ class StudentMenu : BaseActivity() {
         /*user_name += intent.getStringExtra("userName")
         user_identity += intent.getStringExtra("userIdentity")*/
         val prefs=getSharedPreferences("LoginUI.LoginActivity", MODE_PRIVATE)
-        user_name+=prefs.getString("account","null")
-        user_identity+=prefs.getString("identity","null")
+        user_name+=prefs.getString("account", "null")
+        user_identity+=prefs.getString("identity", "null")
         userName.text = user_name
         userIdentity.text = user_identity
 
         //
         important_inform_button.setBackgroundColor(Color.BLUE)
         important_inform_button.setTextColor(Color.WHITE)
+
+
+        val simpleDateFormat = SimpleDateFormat("yyyy年MM月dd日") // HH:mm:ss
+        val date = Date(System.currentTimeMillis())
+        leftdate.setText(simpleDateFormat.format(date)+"  本学期第13周（查看校历）")
 
         //设置强制下线
         ForceOffline.setOnClickListener() {
